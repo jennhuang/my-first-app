@@ -65,7 +65,17 @@ class SearchResultsViewController: UIViewController, UITableViewDataSource, UITa
     }
     
     func tableView(tableView: UITableView!, didDeselectRowAtIndexPath indexPath: NSIndexPath!) {
+        // get the row data for the selected row
+        var rowData: NSDictionary = self.tableData[indexPath.row] as NSDictionary
         
+        var name: String = rowData["trackName"] as String
+        var formattedPrice: String = rowData["formattedPrice"] as String
+        
+        var alert: UIAlertView = UIAlertView()
+        alert.title = name
+        alert.message = formattedPrice
+        alert.addButtonWithTitle("Ok")
+        alert.show()
     }
    
 }
