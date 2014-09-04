@@ -17,16 +17,6 @@ class SearchResultsViewController: UIViewController, UITableViewDataSource, UITa
     var albums = [Album]()
     var imageCache = [String : UIImage]()
     
-    
-    func didReceiveAPIResults(results: NSDictionary) {
-        var resultsArr: NSArray = results["results"] as NSArray
-        dispatch_async(dispatch_get_main_queue(), {
-            self.albums = Album.albumsWithJSON(resultsArr)
-            self.appsTableView!.reloadData()
-            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-        })
-    }
-                            
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -93,6 +83,15 @@ class SearchResultsViewController: UIViewController, UITableViewDataSource, UITa
         }
         cell.detailTextLabel.text = formattedPrice
         return cell
+    }
+    
+    func didReceiveAPIResults(results: NSDictionary) {
+        var resultsArr: NSArray = results["results"] as NSArray
+        dispatch_async(dispatch_get_main_queue(), {
+            self.albums = Album.albumsWithJSON(resultsArr)
+            self.appsTableView!.reloadData()
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+        })
     }
    
 }
