@@ -12,7 +12,7 @@ class DetailsViewController: UIViewController {
 
     var album: Album?
     
-    required init(code aDecoder:NSCoder) {
+    required init(coder aDecoder:NSCoder) {
         super.init(coder: aDecoder)
     }
     
